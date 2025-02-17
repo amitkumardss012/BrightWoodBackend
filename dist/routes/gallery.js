@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const gallery_1 = require("../controllers/gallery");
+const multer_1 = require("../middlewares/multer");
+const gallery = (0, express_1.Router)();
+gallery.post("/create", multer_1.multerUpload.single("image"), gallery_1.uploadGallery);
+gallery.delete("/delete/:id", gallery_1.deleteGallery);
+gallery.get("/all", gallery_1.getAllGalleryImages);
+exports.default = gallery;

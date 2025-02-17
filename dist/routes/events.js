@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const multer_1 = require("../middlewares/multer");
+const events_1 = require("../controllers/events");
+const event = (0, express_1.Router)();
+event.post("/create", multer_1.multerUpload.single("image"), events_1.createEvent);
+event.delete("/delete/:id", events_1.deleteEvent);
+event.get("/all", events_1.getAllEvents);
+event.get("/past", events_1.getPastEvents);
+event.get("/upcoming", events_1.getUpcomingEvents);
+event.get("/:id", events_1.getEventById);
+exports.default = event;

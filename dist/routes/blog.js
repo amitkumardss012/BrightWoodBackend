@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const blog_1 = require("../controllers/blog");
+const multer_1 = require("../middlewares/multer");
+const blog = (0, express_1.Router)();
+blog.post("/create", multer_1.multerUpload.single("image"), blog_1.createBlog);
+blog.delete("/delete/:id", blog_1.deleteBlog);
+blog.get("/all", blog_1.getAllBlogs);
+blog.get("/search", blog_1.searchBlogsByTitle);
+exports.default = blog;
